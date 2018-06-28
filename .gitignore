@@ -26,3 +26,13 @@ hs_err_pid*
 
 #Maven
 */mvnw*
+
+
+/target/
+
+.classpath
+.project
+.settings
+.springBeans
+/.apt_generated/
+.factorypath

@@ -23,3 +23,12 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+/target/
+
+.classpath
+.project
+.settings
+.springBeans
+/.apt_generated/
+.factorypath

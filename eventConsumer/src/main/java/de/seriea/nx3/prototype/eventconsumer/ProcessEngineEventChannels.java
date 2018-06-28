@@ -1,4 +1,4 @@
-package de.seriea.nx3.prototype.eventlog;
+package de.seriea.nx3.prototype.eventconsumer;
 
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.messaging.SubscribableChannel;
