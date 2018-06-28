@@ -1,7 +1,5 @@
 package de.seriea.nx3.prototype.eventconsumer;
 
-import java.util.Optional;
-
 import org.camunda.bpm.engine.impl.history.event.HistoricActivityInstanceEventEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +19,6 @@ public class HistoricActivityInstanceServiceImpl {
 	}
 	
 	public void save(HistoricActivityInstance entity) {
-		repository.save(entity);
-		Optional<HistoricActivityInstance> findById = repository.findById("StartEvent_1:3abd589b-7aef-11e8-a4c6-acde48001122");
-		
-		findById.isPresent();
+		repository.save(entity);	
 	}
 }

@@ -18,7 +18,7 @@ public class KafkaIntegrationProcessEnginePlugin extends AbstractProcessEnginePl
 		CompositeHistoryEventHandler compositeEventHandler = new CompositeHistoryEventHandler();
 
 		DbHistoryEventHandler dbHistoryEventHandler = new DbHistoryEventHandler();
-//		compositeEventHandler.add(dbHistoryEventHandler);
+		compositeEventHandler.add(dbHistoryEventHandler);
 		compositeEventHandler.add(kafkaHistoryEventHandler);
 		
 		processEngineConfiguration.setHistoryEventHandler(compositeEventHandler);
