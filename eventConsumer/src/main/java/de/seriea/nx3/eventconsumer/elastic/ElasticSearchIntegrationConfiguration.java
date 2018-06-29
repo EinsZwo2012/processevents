@@ -1,4 +1,4 @@
-package de.seriea.nx3.prototype.eventconsumer;
+package de.seriea.nx3.eventconsumer.elastic;
 
 import org.elasticsearch.client.Client;
 import org.springframework.context.annotation.Bean;
@@ -7,7 +7,7 @@ import org.springframework.data.elasticsearch.client.TransportClientFactoryBean;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
-@EnableElasticsearchRepositories(basePackages = "de.seriea.nx3.prototype.eventconsumer")
+@EnableElasticsearchRepositories(basePackages = "de.seriea.nx3.eventconsumer")
 @Configuration
 public class ElasticSearchIntegrationConfiguration {
 	

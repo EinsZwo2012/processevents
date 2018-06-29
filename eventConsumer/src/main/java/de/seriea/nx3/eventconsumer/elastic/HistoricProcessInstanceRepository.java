@@ -1,4 +1,4 @@
-package de.seriea.nx3.prototype.eventconsumer;
+package de.seriea.nx3.eventconsumer.elastic;
 
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 

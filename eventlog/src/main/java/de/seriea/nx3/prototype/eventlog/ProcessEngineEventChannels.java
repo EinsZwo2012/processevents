@@ -5,18 +5,8 @@ import org.springframework.messaging.MessageChannel;
 
 public interface ProcessEngineEventChannels {
 	
-	String VARIABLES_OUT = "variables";
-	
-	String ACTIVITIES_OUT = "activities";
-	
-	String PROCESS_INSTANCES_OUT = "processinstances";
+	String PROCESS_EVENTS = "processevents";
 
-	@Output(ProcessEngineEventChannels.VARIABLES_OUT)
-	MessageChannel variables();
-	
-	@Output(ProcessEngineEventChannels.ACTIVITIES_OUT)
-	MessageChannel activities();
-	
-	@Output(ProcessEngineEventChannels.PROCESS_INSTANCES_OUT)
-	MessageChannel processinstances();
+	@Output(ProcessEngineEventChannels.PROCESS_EVENTS)
+	MessageChannel processEvents();
 }
