@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.seriea.nx3.prototype</groupId>
-	<artifactId>eventlog</artifactId>
+	<artifactId>event-producer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>eventlog</name>
+	<name>event-producer</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
