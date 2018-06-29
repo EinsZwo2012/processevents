@@ -2,7 +2,7 @@ package de.seriea.nx3.prototype.eventlog;
 
 import java.util.List;
 
-import org.camunda.bpm.engine.impl.history.event.HistoricActivityInstanceEventEntity;
+import org.camunda.bpm.engine.impl.history.event.HistoricProcessInstanceEventEntity;
 import org.camunda.bpm.engine.impl.history.event.HistoryEvent;
 import org.camunda.bpm.engine.impl.history.handler.HistoryEventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +26,8 @@ public class KafkaHistoryEventHandler implements HistoryEventHandler {
 	@Override
 	public void handleEvent(HistoryEvent historyEvent) {
 		
-		if(historyEvent instanceof HistoricActivityInstanceEventEntity) {
-			channels.activities().send(MessageBuilder
+		if(historyEvent instanceof HistoricProcessInstanceEventEntity) {
+			channels.processinstances().send(MessageBuilder
 									.withPayload(historyEvent)
 									.setHeader("partitionKey", historyEvent.getId())
 									.setHeader("historyEventType", historyEvent.getClass().getName())
