@@ -1,7 +1,7 @@
 package de.mhens.events.eventconsumer.integration;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.stereotype.Component;
 
 import de.mhens.events.eventconsumer.elastic.HistoricProcessInstance;
@@ -13,7 +13,7 @@ public class ElasticSearchServiceActivator {
 	@Autowired
 	private HistoricProcessInstanceService service;
 	
-	@StreamListener(target = ProcessEngineEventChannels.ELASTIC)
+	@ServiceActivator(inputChannel = ProcessEngineEventChannels.ELASTIC)
 	public void handle(HistoricProcessInstance message) {
 		service.save(message);
 	}

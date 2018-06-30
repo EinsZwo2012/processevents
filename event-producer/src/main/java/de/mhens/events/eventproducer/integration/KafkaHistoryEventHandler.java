@@ -1,4 +1,4 @@
-package de.mhens.events.eventproducer;
+package de.mhens.events.eventproducer.integration;
 
 import java.util.List;
 

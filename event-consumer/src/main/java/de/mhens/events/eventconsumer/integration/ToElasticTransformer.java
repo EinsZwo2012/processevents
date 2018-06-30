@@ -10,7 +10,7 @@ import de.mhens.events.eventconsumer.elastic.HistoricProcessInstance;
 public class ToElasticTransformer {
 	
 	@Transformer(inputChannel = ProcessEngineEventChannels.PROCESS_EVENTS, outputChannel = ProcessEngineEventChannels.ELASTIC)
-	public Object transform(HistoricProcessInstanceEventEntity message) {
+	public HistoricProcessInstance transform(HistoricProcessInstanceEventEntity message) {
 		
 		//TODO: Something like a strategy pattern or factor for transforming of different types. Actual we only get HistoricProcessInstanceEventEntity messages
 		

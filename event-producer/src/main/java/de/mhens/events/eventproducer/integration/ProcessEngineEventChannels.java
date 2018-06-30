@@ -1,4 +1,4 @@
-package de.mhens.events.eventproducer;
+package de.mhens.events.eventproducer.integration;
 
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;

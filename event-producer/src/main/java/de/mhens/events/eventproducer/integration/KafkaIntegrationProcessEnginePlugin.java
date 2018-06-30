@@ -1,4 +1,4 @@
-package de.mhens.events.eventproducer;
+package de.mhens.events.eventproducer.integration;
 
 import org.camunda.bpm.engine.impl.cfg.AbstractProcessEnginePlugin;
 import org.camunda.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl;
