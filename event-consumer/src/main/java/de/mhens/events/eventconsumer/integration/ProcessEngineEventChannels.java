@@ -27,7 +27,7 @@ public interface ProcessEngineEventChannels {
 	SubscribableChannel elasticIn();
 	
 	@Output(ProcessEngineEventChannels.ELASTIC_OUT)
-	MessageChannel elastic();
+	MessageChannel elasticOut();
 	
 	@Input(ProcessEngineEventChannels.ELASTIC_ERRORS)
 	SubscribableChannel elasticErrors();

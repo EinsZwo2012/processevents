@@ -36,7 +36,7 @@ public class EventConsumerApplicationTests {
 		Message<HistoricProcessInstanceEventEntity> message = new GenericMessage<>(event);
 		channels.processEvents().send(message);
 		Message<String> received = 
-				(Message<String>) messageCollector.forChannel(channels.elastic()).poll();
+				(Message<String>) messageCollector.forChannel(channels.elasticOut()).poll();
 		
 		Assert.isTrue(received.getPayload().contains(event.getId()), String.format("Received event must have id=%s ", event.getId()));
 	}

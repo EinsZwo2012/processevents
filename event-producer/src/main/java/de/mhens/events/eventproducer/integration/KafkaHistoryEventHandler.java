@@ -29,7 +29,7 @@ public class KafkaHistoryEventHandler implements HistoryEventHandler {
 		if(historyEvent instanceof HistoricProcessInstanceEventEntity) {
 			channels.processEvents().send(MessageBuilder
 									.withPayload(historyEvent)
-									.setHeader("partitionKey", historyEvent.getId())
+									.setHeader("partitionKey", historyEvent.getProcessInstanceId())
 									.setHeader("historyEventType", historyEvent.getClass().getName())
 									.build(), 2000l);
 		}else {

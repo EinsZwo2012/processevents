@@ -7,12 +7,15 @@ import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 import de.mhens.events.eventconsumer.elastic.HistoricProcessInstance;
 
 @Transactional
 @Component
 public class ToElasticTransformer {
 	
+	@HystrixCommand
 	@Transformer(inputChannel = ProcessEngineEventChannels.PROCESS_EVENTS, outputChannel = ProcessEngineEventChannels.ELASTIC_OUT)
 	public HistoricProcessInstance transform(HistoricProcessInstanceEventEntity message) {
 		//TODO: Something like a strategy pattern or factory for transforming of different types. Actual we only get HistoricProcessInstanceEventEntity messages
