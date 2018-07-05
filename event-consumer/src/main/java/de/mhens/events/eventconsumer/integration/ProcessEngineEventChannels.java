@@ -8,12 +8,27 @@ import org.springframework.messaging.SubscribableChannel;
 public interface ProcessEngineEventChannels {
 	
 	String PROCESS_EVENTS = "processevents";
+	
+	String PROCESS_EVENT_ERRORS="processeventerrors";
 
-	String ELASTIC = "elastic";
+	String ELASTIC_IN = "elasticIn";
+	
+	String ELASTIC_OUT= "elasticOut";
+	
+	String ELASTIC_ERRORS = "elasticerrors";
 	
 	@Input(ProcessEngineEventChannels.PROCESS_EVENTS)
 	SubscribableChannel processEvents();
 	
-	@Output(ProcessEngineEventChannels.ELASTIC)
+	@Input(ProcessEngineEventChannels.PROCESS_EVENT_ERRORS)
+	SubscribableChannel processEventErrors();
+	
+	@Input(ProcessEngineEventChannels.ELASTIC_IN)
+	SubscribableChannel elasticIn();
+	
+	@Output(ProcessEngineEventChannels.ELASTIC_OUT)
 	MessageChannel elastic();
+	
+	@Input(ProcessEngineEventChannels.ELASTIC_ERRORS)
+	SubscribableChannel elasticErrors();
 }
