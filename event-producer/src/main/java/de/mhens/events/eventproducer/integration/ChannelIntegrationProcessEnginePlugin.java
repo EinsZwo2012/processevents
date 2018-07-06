@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class KafkaIntegrationProcessEnginePlugin extends AbstractProcessEnginePlugin {
+public class ChannelIntegrationProcessEnginePlugin extends AbstractProcessEnginePlugin {
 
 	@Autowired
-	private KafkaHistoryEventHandler kafkaHistoryEventHandler;
+	private ChannelHistoryEventHandler channelHistoryEventHandler;
 
 	public void postInit(ProcessEngineConfigurationImpl processEngineConfiguration) {
 
@@ -19,7 +19,7 @@ public class KafkaIntegrationProcessEnginePlugin extends AbstractProcessEnginePl
 
 		DbHistoryEventHandler dbHistoryEventHandler = new DbHistoryEventHandler();
 		compositeEventHandler.add(dbHistoryEventHandler);
-		compositeEventHandler.add(kafkaHistoryEventHandler);
+		compositeEventHandler.add(channelHistoryEventHandler);
 		
 		processEngineConfiguration.setHistoryEventHandler(compositeEventHandler);
 	}

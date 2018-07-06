@@ -16,6 +16,6 @@ public class HistoricProcessInstanceServiceImpl implements HistoricProcessInstan
 	@HystrixCommand
 	@Override
 	public void save(HistoricProcessInstance entity) {
-		repository.save(entity);	
+		repository.save(entity);
 	}
 }
