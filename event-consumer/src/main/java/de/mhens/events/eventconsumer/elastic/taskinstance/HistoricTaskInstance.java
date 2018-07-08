@@ -1,4 +1,4 @@
-package de.mhens.events.eventconsumer.elastic;
+package de.mhens.events.eventconsumer.elastic.taskinstance;
 
 import java.util.Date;
 
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 @Document(indexName = "camunda", type = "processevent")
-public class HistoricProcessInstance {
+public class HistoricTaskInstance {
  
     @Id
     private String id;
@@ -23,4 +23,6 @@ public class HistoricProcessInstance {
     private Date startTime;
     
     private Date endTime;
+    
+    private String taskId;
 }

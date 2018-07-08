@@ -1,14 +1,13 @@
-package de.mhens.events.eventconsumer.integration;
+package de.mhens.events.eventconsumer.integration.processinstance;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.integration.annotation.ServiceActivator;
-import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import de.mhens.events.eventconsumer.elastic.HistoricProcessInstance;
-import de.mhens.events.eventconsumer.elastic.HistoricProcessInstanceService;
+import de.mhens.events.eventconsumer.elastic.processinstance.HistoricProcessInstance;
+import de.mhens.events.eventconsumer.elastic.processinstance.HistoricProcessInstanceRepository;
+import de.mhens.events.eventconsumer.integration.ProcessEngineEventChannels;
 
 @Transactional
 @Component
@@ -17,15 +16,10 @@ public class HistoricProcessInstanceServiceActivator {
 	private final String HANDABLE_EVENT_TYPE="de.mhens.events.eventconsumer.elastic.HistoricProcessInstance";
 	
 	@Autowired
-	private HistoricProcessInstanceService service;
+	private HistoricProcessInstanceRepository repository;
 	
 	@StreamListener(value = ProcessEngineEventChannels.ELASTIC_IN, condition = "headers['elasticType']=='"+HANDABLE_EVENT_TYPE+"'")	
 	public void handle(HistoricProcessInstance message) {
-		service.save(message);
-	}
-	
-	@ServiceActivator(inputChannel = ProcessEngineEventChannels.ELASTIC_ERRORS)
-	public void error(Message<?> message) {	
-		System.out.println("Handling ERROR: " + message);
+		repository.save(message);
 	}
 }

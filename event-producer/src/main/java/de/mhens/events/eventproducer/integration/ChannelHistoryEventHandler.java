@@ -6,6 +6,8 @@ import java.util.List;
 import org.camunda.bpm.engine.impl.history.event.HistoricProcessInstanceEventEntity;
 import org.camunda.bpm.engine.impl.history.event.HistoryEvent;
 import org.camunda.bpm.engine.impl.history.handler.HistoryEventHandler;
+import org.camunda.bpm.engine.impl.persistence.entity.HistoricActivityInstanceEntity;
+import org.camunda.bpm.engine.impl.persistence.entity.HistoricTaskInstanceEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
@@ -35,7 +37,9 @@ public class ChannelHistoryEventHandler implements HistoryEventHandler {
 	public ChannelHistoryEventHandler() {
 		handledHistoryEvents = new ArrayList<>();
 		
-		handledHistoryEvents.add(HistoricProcessInstanceEventEntity.class.getName());
+		handledHistoryEvents.add(HistoricProcessInstanceEventEntity.class.getName());	
+		handledHistoryEvents.add(HistoricTaskInstanceEntity.class.getName());
+		handledHistoryEvents.add(HistoricActivityInstanceEntity.class.getName());
 	}
 	
 	@Override
