@@ -1,6 +1,7 @@
 package de.mhens.events.eventconsumer.integration.taskinstance;
 
 import org.camunda.bpm.engine.impl.history.event.HistoricTaskInstanceEventEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,11 @@ import de.mhens.events.eventconsumer.integration.ProcessEngineEventChannels;
 public class HistoricTaskInstanceTransformer extends HistoricProcessEventTransformer<HistoricTaskInstanceEventEntity, HistoricTaskInstance>{
 	
 	private final String HANDABLE_EVENT_TYPE="org.camunda.bpm.engine.impl.history.event.HistoricTaskInstanceEventEntity";
+	
+	@Autowired
+	public HistoricTaskInstanceTransformer(ProcessEngineEventChannels channels) {
+		super(channels);
+	}
 	
 	@HystrixCommand
 	@StreamListener(value = ProcessEngineEventChannels.PROCESS_EVENTS, condition = "headers['historyEventType']=='"+HANDABLE_EVENT_TYPE+"'")

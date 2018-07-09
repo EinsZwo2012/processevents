@@ -1,6 +1,7 @@
 package de.mhens.events.eventconsumer.integration.activityinstance;
 
 import org.camunda.bpm.engine.impl.history.event.HistoricActivityInstanceEventEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,11 @@ import de.mhens.events.eventconsumer.integration.ProcessEngineEventChannels;
 public class HistoricActivityInstanceTransformer extends HistoricProcessEventTransformer<HistoricActivityInstanceEventEntity, HistoricActivityInstance> {
 	
 	private final String HANDABLE_EVENT_TYPE="org.camunda.bpm.engine.impl.history.event.HistoricActivityInstanceEventEntity";
+	
+	@Autowired
+	public HistoricActivityInstanceTransformer(ProcessEngineEventChannels channels) {
+		super(channels);
+	}
 	
 	@HystrixCommand
 	@StreamListener(value = ProcessEngineEventChannels.PROCESS_EVENTS, condition = "headers['historyEventType']=='"+HANDABLE_EVENT_TYPE+"'")

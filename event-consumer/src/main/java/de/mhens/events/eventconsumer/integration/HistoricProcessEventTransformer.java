@@ -1,6 +1,5 @@
 package de.mhens.events.eventconsumer.integration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 
@@ -13,8 +12,11 @@ import org.springframework.messaging.support.MessageBuilder;
  */
 public abstract class HistoricProcessEventTransformer<I,O> {
 	
-	@Autowired
 	private ProcessEngineEventChannels channels;
+	
+	public HistoricProcessEventTransformer(ProcessEngineEventChannels channels) {
+		this.channels = channels;
+	}
 	
 	protected void transform(Message<I> message) {
 		
