@@ -16,7 +16,7 @@ import de.mhens.events.eventconsumer.integration.ProcessEngineEventChannels;
 @Component
 public class HistoricActivityInstanceTransformer extends HistoricProcessEventTransformer<HistoricActivityInstanceEntity, HistoricActivityInstance> {
 	
-	private final String HANDABLE_EVENT_TYPE="org.camunda.bpm.engine.impl.persistence.entity.HistoricActivityInstanceEntity";
+	private final String HANDABLE_EVENT_TYPE="org.camunda.bpm.engine.impl.history.event.HistoricActivityInstanceEventEntity";
 	
 	@HystrixCommand
 	@StreamListener(value = ProcessEngineEventChannels.PROCESS_EVENTS, condition = "headers['historyEventType']=='"+HANDABLE_EVENT_TYPE+"'")
