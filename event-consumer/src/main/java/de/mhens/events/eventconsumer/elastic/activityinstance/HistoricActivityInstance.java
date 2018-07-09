@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Document(indexName = "camunda", type = "processevent")
+@Document(indexName = "camunda", type = "historic-activity")
 public class HistoricActivityInstance {
  
     @Id

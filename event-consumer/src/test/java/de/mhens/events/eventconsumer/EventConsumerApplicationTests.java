@@ -50,7 +50,7 @@ public class EventConsumerApplicationTests {
 	
 	@Test
 	@SuppressWarnings("unchecked")
-	public void testTaskInstanceIntegrationPipeline() {
+	public void testTaskInstanceIntegrationPipeline(){
 		//GIVEN
 		HistoricTaskInstanceEventEntity event = new HistoricTaskInstanceEventEntity();
 		event.setId(UUID.randomUUID().toString());
@@ -76,7 +76,7 @@ public class EventConsumerApplicationTests {
 		HistoricActivityInstanceEventEntity event = new HistoricActivityInstanceEventEntity();
 		event.setId(UUID.randomUUID().toString());
 		event.setProcessInstanceId(UUID.randomUUID().toString());
-		
+
 		Message<?> message = buildMessage(event);
 		
 		//WHEN
