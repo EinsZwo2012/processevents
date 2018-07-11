@@ -1,6 +1,7 @@
 package de.mhens.events.eventconsumer.integration;
 
 import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.support.MessageBuilder;
 
 /**
@@ -24,7 +25,7 @@ public abstract class HistoricProcessEventTransformer<I,O> {
 		
 		O payload = buildPayload(historicProcessEvent);
 		
-		Message<O> transformedMessage =  buildMessage(payload, message);
+		Message<O> transformedMessage =  buildMessage(payload, message.getHeaders());
 		
 		sendToChannel(transformedMessage);
 	}
@@ -33,9 +34,9 @@ public abstract class HistoricProcessEventTransformer<I,O> {
 		channels.elasticOut().send(message);
 	}
 	
-	private Message<O> buildMessage(O payload, Message<I> message) {
+	private Message<O> buildMessage(O payload, MessageHeaders headersToCopy) {
 		Message<O> transformedMessage =  MessageBuilder.withPayload(payload)
-				 .copyHeaders(message.getHeaders())
+				 .copyHeaders(headersToCopy)
 				 .setHeader("elasticType", payload.getClass().getName())
 				 .build();
 		

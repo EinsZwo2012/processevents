@@ -13,7 +13,7 @@ import de.mhens.events.eventconsumer.integration.ProcessEngineEventChannels;
 @Component
 public class HistoricProcessInstanceServiceActivator {
 
-	private final String HANDABLE_EVENT_TYPE="de.mhens.events.eventconsumer.elastic.HistoricProcessInstance";
+	private final String HANDABLE_EVENT_TYPE="de.mhens.events.eventconsumer.elastic.processinstance.HistoricProcessInstance";
 	
 	@Autowired
 	private HistoricProcessInstanceRepository repository;
