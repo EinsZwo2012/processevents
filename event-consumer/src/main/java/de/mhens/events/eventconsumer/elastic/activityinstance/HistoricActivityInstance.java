@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,9 +21,17 @@ public class HistoricActivityInstance {
     private String id;
      
     private String processInstanceId;
-     
+    
+    @Field(
+			type = FieldType.Date,
+			store = true
+	)
     private Date startTime;
     
+    @Field(
+			type = FieldType.Date,
+			store = true
+	)
     private Date endTime;
     
     private String activityId;

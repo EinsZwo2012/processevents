@@ -36,6 +36,10 @@ public class HistoricProcessInstanceTransformer extends HistoricProcessEventTran
 		return new HistoricProcessInstance(
 				input.getId(), 
 				input.getProcessInstanceId(),
+				input.getBusinessKey(),
+				input.getStartActivityId(),
+				input.getEndActivityId(),
+				input.getDeleteReason(),
 				input.getStartTime(),
 				input.getEndTime());
 	}

@@ -8,6 +8,7 @@ import org.camunda.bpm.engine.impl.history.event.HistoricProcessInstanceEventEnt
 import org.camunda.bpm.engine.impl.history.event.HistoricTaskInstanceEventEntity;
 import org.camunda.bpm.engine.impl.history.event.HistoryEvent;
 import org.camunda.bpm.engine.impl.history.handler.HistoryEventHandler;
+import org.camunda.bpm.engine.impl.persistence.entity.HistoricJobLogEventEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
@@ -20,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Send {@link HistoryEvent}s to {@link ProcessEngineEventsChannel}.
- * This is done in concrete business transaction. If send to channel fails complete business trasaction will be rolled back.
+ * This is done in concrete business transaction. If send to channel fails complete business transaction will be rolled back.
  * @author markushens
  *
  */
@@ -40,6 +41,8 @@ public class ChannelHistoryEventHandler implements HistoryEventHandler {
 		handledHistoryEvents.add(HistoricProcessInstanceEventEntity.class.getName());	
 		handledHistoryEvents.add(HistoricTaskInstanceEventEntity.class.getName());
 		handledHistoryEvents.add(HistoricActivityInstanceEventEntity.class.getName());
+		handledHistoryEvents.add(HistoricJobLogEventEntity.class.getName());
+
 	}
 	
 	@Override

@@ -1,4 +1,4 @@
-package de.mhens.events.eventconsumer.elastic.processinstance;
+package de.mhens.events.eventconsumer.elastic.jobinstance;
 
 import java.util.Date;
 
@@ -14,31 +14,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Document(indexName = "camunda", type = "historic-process-instance")
-public class HistoricProcessInstance {
+@Document(indexName = "camunda", type = "historic-job-instance")
+public class HistoricJobInstance {
  
     @Id
     private String id;
      
-    private String processInstanceId;
-    
-    private String businessKey;
-    
-    private String startActivityId;
-    
-    private String endActivityId;
-    
-    private String deleteReason;
-     
+	private String activityId;
+	
+	private Integer state;
+
+	private String processInstanceId;
+	
     @Field(
 			type = FieldType.Date,
 			store = true
 	)
-    private Date startTime;
-    
-    @Field(
-			type = FieldType.Date,
-			store = true
-	)
-    private Date endTime;
+    private Date jobDueDate;
 }
