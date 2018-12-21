@@ -5,6 +5,8 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 import de.mhens.events.eventconsumer.elastic.processinstance.HistoricProcessInstance;
 import de.mhens.events.eventconsumer.elastic.processinstance.HistoricProcessInstanceRepository;
 import de.mhens.events.eventconsumer.integration.ProcessEngineEventChannels;
@@ -13,12 +15,13 @@ import de.mhens.events.eventconsumer.integration.ProcessEngineEventChannels;
 @Component
 public class HistoricProcessInstanceServiceActivator {
 
-	private final String HANDABLE_EVENT_TYPE="de.mhens.events.eventconsumer.elastic.processinstance.HistoricProcessInstance";
+	private final String HANDABLE_EVENT_TYPE="HistoricProcessInstanceEventEntity";
 	
 	@Autowired
 	private HistoricProcessInstanceRepository repository;
 	
-	@StreamListener(value = ProcessEngineEventChannels.ELASTIC_IN, condition = "headers['elasticType']=='"+HANDABLE_EVENT_TYPE+"'")	
+	@HystrixCommand
+	@StreamListener(value = ProcessEngineEventChannels.PROCESS_EVENTS, condition = "headers['historyEventType']=='"+HANDABLE_EVENT_TYPE+"'")
 	public void handle(HistoricProcessInstance message) {
 		repository.save(message);
 	}

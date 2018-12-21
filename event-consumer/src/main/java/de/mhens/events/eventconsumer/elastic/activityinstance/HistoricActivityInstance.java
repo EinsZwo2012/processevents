@@ -35,4 +35,12 @@ public class HistoricActivityInstance {
     private Date endTime;
     
     private String activityId;
+  
+    private String activityName;
+
+    private String activityType;
+
+    private String activityInstanceId;
+
+    private int activityInstanceState;
 }

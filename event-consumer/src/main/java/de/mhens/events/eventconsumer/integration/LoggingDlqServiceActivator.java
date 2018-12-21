@@ -10,15 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class LoggingDlqServiceActivator {
 
-	
 	@ServiceActivator(inputChannel = ProcessEngineEventChannels.PROCESS_EVENT_ERRORS)
 	public void logProcessEventDlq(Message<?> message) {
-		log.error("Handling ERROR: {}", message);
-	}
-	
-	
-	@ServiceActivator(inputChannel = ProcessEngineEventChannels.ELASTIC_ERRORS)
-	public void logElasticDlq(Message<?> message) {	
 		log.error("Handling ERROR: {}", message);
 	}
 }

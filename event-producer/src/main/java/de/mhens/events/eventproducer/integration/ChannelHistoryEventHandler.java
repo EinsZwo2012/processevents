@@ -76,7 +76,7 @@ public class ChannelHistoryEventHandler implements HistoryEventHandler {
 		return MessageBuilder
 					.withPayload(historyEvent)
 					.setHeader("partitionKey", historyEvent.getProcessInstanceId())
-					.setHeader("historyEventType", historyEvent.getClass().getName())
+					.setHeader("historyEventType", historyEvent.getClass().getSimpleName())
 					.build();
 	}
 }
