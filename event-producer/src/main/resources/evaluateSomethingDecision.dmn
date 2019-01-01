@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_1nnre1g" name="DRD" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="evaluateSomething" name="Evaluate Something">
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="Something">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text>something</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" typeRef="string" />
+      <rule id="DecisionRule_05yhm3t">
+        <inputEntry id="UnaryTests_16on0ps">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0zcz0dj">
+          <text>"Test"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

@@ -1,4 +1,4 @@
-package de.mhens.events.eventconsumer.elastic.taskinstance;
+package de.mhens.events.eventconsumer.elastic.incidentinstance;
 
 import java.util.Date;
 
@@ -14,28 +14,37 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Document(indexName = "camunda", type = "historic-task")
-public class HistoricTaskInstance {
+@Document(indexName = "camunda", type = "historic-incident")
+public class HistoricIncidentInstance {
  
     @Id
     private String id;
-     
-    private String processInstanceId;
-     
+          
     @Field(
 			type = FieldType.Date,
 			store = true
 	)
-    private Date startTime;
-    
+    private Date createTime;
     
     @Field(
 			type = FieldType.Date,
 			store = true
 	)
-    private Date endTime;
+    private Date endTime;    
+
+    protected String incidentType;
     
-    private String taskId;
+    protected String activityId;
     
-    private String taskDefinitionKey;
+    protected String causeIncidentId;
+    
+    protected String rootCauseIncidentId;
+    
+    protected String configuration;
+    
+    protected String incidentMessage;
+    
+    protected int incidentState;
+    
+    protected String jobDefinitionId;
 }

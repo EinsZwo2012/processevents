@@ -2,21 +2,29 @@ package de.mhens.events.eventproducer.integration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.annotation.PostConstruct;
 
 import org.camunda.bpm.engine.impl.history.event.HistoricActivityInstanceEventEntity;
+import org.camunda.bpm.engine.impl.history.event.HistoricDecisionEvaluationEvent;
+import org.camunda.bpm.engine.impl.history.event.HistoricIncidentEventEntity;
 import org.camunda.bpm.engine.impl.history.event.HistoricProcessInstanceEventEntity;
 import org.camunda.bpm.engine.impl.history.event.HistoricTaskInstanceEventEntity;
 import org.camunda.bpm.engine.impl.history.event.HistoryEvent;
 import org.camunda.bpm.engine.impl.history.handler.HistoryEventHandler;
 import org.camunda.bpm.engine.impl.persistence.entity.HistoricJobLogEventEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.Message;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
+import de.mhens.events.dto.EventDto;
+import de.mhens.events.eventproducer.integration.transformers.HistoryEventTransformer;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -33,16 +41,26 @@ public class ChannelHistoryEventHandler implements HistoryEventHandler {
 	@Autowired
 	private ProcessEngineEventsChannel channels;
 	
+	@Autowired
+	private ApplicationContext ctx;
+	
+	//TODO ; Remove
 	private ArrayList<String> handledHistoryEvents;
 	
-	public ChannelHistoryEventHandler() {
+	private List<HistoryEventTransformer<HistoryEvent, EventDto>> transformers;
+		
+	@PostConstruct
+	public void init() {
 		handledHistoryEvents = new ArrayList<>();
 		
 		handledHistoryEvents.add(HistoricProcessInstanceEventEntity.class.getName());	
 		handledHistoryEvents.add(HistoricTaskInstanceEventEntity.class.getName());
 		handledHistoryEvents.add(HistoricActivityInstanceEventEntity.class.getName());
 		handledHistoryEvents.add(HistoricJobLogEventEntity.class.getName());
-
+		handledHistoryEvents.add(HistoricIncidentEventEntity.class.getName());
+		handledHistoryEvents.add(HistoricDecisionEvaluationEvent.class.getName());
+		
+		transformers = ctx.getBeansOfType(HistoryEventTransformer.class).values().stream().collect(Collectors.toList());
 	}
 	
 	@Override
@@ -68,13 +86,21 @@ public class ChannelHistoryEventHandler implements HistoryEventHandler {
 	}
 
 	private void sendToChannel(HistoryEvent historyEvent) {
-		Message<HistoryEvent> message = buildMessage(historyEvent);
+		Message<EventDto> message = buildMessage(historyEvent);
 		channels.processEvents().send(message);
 	}
 
-	private Message<HistoryEvent> buildMessage(HistoryEvent historyEvent) {
+	private Message<EventDto> buildMessage(final HistoryEvent historyEvent) {
+		
+		HistoryEventTransformer<HistoryEvent, EventDto> transformer = transformers.stream()
+					.filter(t -> t.isSuitable(historyEvent.getClass().getName()))
+					.findFirst()
+					.orElseThrow(() ->new IllegalArgumentException("No transformer found"));
+		
+		
+		EventDto dto = transformer.transform(historyEvent);
 		return MessageBuilder
-					.withPayload(historyEvent)
+					.withPayload(dto)
 					.setHeader("partitionKey", historyEvent.getProcessInstanceId())
 					.setHeader("historyEventType", historyEvent.getClass().getSimpleName())
 					.build();
