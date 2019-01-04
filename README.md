@@ -13,4 +13,4 @@ Integrates Camunda BPM historic process events with Elasticsearch.
 
 Example:
 
-![KPIs](kpis.jpg)
+![KPIs](kpis.png)
