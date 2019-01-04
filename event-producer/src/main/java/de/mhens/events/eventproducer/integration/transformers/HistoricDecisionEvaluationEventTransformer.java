@@ -24,7 +24,8 @@ public class HistoricDecisionEvaluationEventTransformer implements HistoryEventT
 				root.getRootDecisionInstanceId(), 
 				root.getDecisionRequirementsDefinitionId(), 
 				root.getDecisionRequirementsDefinitionKey(), 
-				root.getEvaluationTime());
+				root.getEvaluationTime(),
+				root.getProcessInstanceId());
 		
 		return dto;
 	}

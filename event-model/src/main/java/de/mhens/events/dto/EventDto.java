@@ -1,5 +1,6 @@
 package de.mhens.events.dto;
 
-public class EventDto {
+public abstract class EventDto {
 
+	public abstract String getProcessInstanceId();
 }

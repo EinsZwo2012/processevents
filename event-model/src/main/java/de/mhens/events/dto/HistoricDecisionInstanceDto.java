@@ -30,4 +30,6 @@ public class HistoricDecisionInstanceDto  extends EventDto{
     private String decisionRequirementsDefinitionKey;
     
     private Date evaluationTime;
+    
+    private String processInstanceId;
 }

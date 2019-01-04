@@ -14,4 +14,9 @@ public class LoggingDlqServiceActivator {
 	public void logProcessEventDlq(Message<?> message) {
 		log.error("Handling ERROR: {}", message);
 	}
+	
+	@ServiceActivator(inputChannel = ProcessEngineEventChannels.PROCESS_INSTANCES_ERRORS)
+	public void logProcessInstanceDlq(Message<?> message) {
+		log.error("Handling ERROR: {}", message);
+	}
 }

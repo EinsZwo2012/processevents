@@ -21,7 +21,7 @@ public class HistoricProcessInstanceServiceActivator {
 	private HistoricProcessInstanceRepository repository;
 	
 	@HystrixCommand
-	@StreamListener(value = ProcessEngineEventChannels.PROCESS_EVENTS, condition = "headers['historyEventType']=='"+HANDABLE_EVENT_TYPE+"'")
+	@StreamListener(value = ProcessEngineEventChannels.PROCESS_INSTANCES_IN, condition = "headers['historyEventType']=='"+HANDABLE_EVENT_TYPE+"'")
 	public void handle(HistoricProcessInstance message) {
 		repository.save(message);
 	}

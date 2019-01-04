@@ -41,4 +41,22 @@ public class HistoricProcessInstance {
 			store = true
 	)
     private Date endTime;
+    
+    @Field(
+			type = FieldType.Long,
+			store = true
+	)
+    private Long durationInMs;
+    
+    public boolean isEnded(){
+    	return endTime!=null;
+    }
+    
+    public void computeDuration() {
+    	if(endTime == null) {
+    		throw new IllegalStateException("EndTime must be not null");
+    	}else {
+    		durationInMs = endTime.getTime() - startTime.getTime();
+    	}
+    }
 }

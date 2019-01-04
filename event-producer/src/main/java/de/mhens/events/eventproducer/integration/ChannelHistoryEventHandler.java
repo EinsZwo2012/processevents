@@ -99,9 +99,10 @@ public class ChannelHistoryEventHandler implements HistoryEventHandler {
 		
 		
 		EventDto dto = transformer.transform(historyEvent);
+	
 		return MessageBuilder
 					.withPayload(dto)
-					.setHeader("partitionKey", historyEvent.getProcessInstanceId())
+					.setHeader("partitionKey", dto.getProcessInstanceId())
 					.setHeader("historyEventType", historyEvent.getClass().getSimpleName())
 					.build();
 	}
