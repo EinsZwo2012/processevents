@@ -10,3 +10,7 @@ Integrates Camunda BPM historic process events with Elasticsearch.
 4. Start event-producer (Spring Boot Application)
 5. Go to localhost:8082. Login in with demo:demo and start a new process instance in tasklist
 6. Produced events will be written to Apache Kafka topic and consumed by event-consumer which populates them to Elasticsearch under index 'camunda'
+
+Example:
+
+![KPIs](kpis.jpg)
