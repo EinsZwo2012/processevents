@@ -19,7 +19,6 @@ public class HistoricIncidentEventTransformer implements HistoryEventTransformer
 		}else if (event.isResolved()) {
 			incidentState = 1;
 		}
-		
 		HistoricIncidentInstanceDto dto = new HistoricIncidentInstanceDto(
 				event.getId(), 
 				event.getCreateTime(), 
@@ -31,7 +30,8 @@ public class HistoricIncidentEventTransformer implements HistoryEventTransformer
 				event.getConfiguration(), 
 				event.getIncidentMessage(), 
 				incidentState,
-				event.getJobDefinitionId());
+				event.getJobDefinitionId(),
+				event.getProcessInstanceId());
 		
 		return dto;
 	}

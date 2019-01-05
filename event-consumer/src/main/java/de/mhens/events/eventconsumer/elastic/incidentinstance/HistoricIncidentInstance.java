@@ -47,4 +47,7 @@ public class HistoricIncidentInstance {
     protected int incidentState;
     
     protected String jobDefinitionId;
+    
+    private String processInstanceId;
+
 }

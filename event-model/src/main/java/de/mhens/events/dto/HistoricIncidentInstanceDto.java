@@ -17,19 +17,22 @@ public class HistoricIncidentInstanceDto extends EventDto{
     
     private Date endTime;    
 
-    protected String incidentType;
+    private String incidentType;
     
-    protected String activityId;
+    private String activityId;
     
-    protected String causeIncidentId;
+    private String causeIncidentId;
     
-    protected String rootCauseIncidentId;
+    private String rootCauseIncidentId;
     
-    protected String configuration;
+    private String configuration;
     
-    protected String incidentMessage;
+    private String incidentMessage;
     
-    protected int incidentState;
+    private int incidentState;
     
-    protected String jobDefinitionId;
+    private String jobDefinitionId;
+    
+    private String processInstanceId;
+
 }
