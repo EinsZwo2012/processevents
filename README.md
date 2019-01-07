@@ -1,6 +1,6 @@
 # Processevents
 
-Integrates Camunda BPM historic process events with Elasticsearch via kakfka
+Integrates Camunda BPM historic process events with Elasticsearch via kafka
 
 ## How to use
 
