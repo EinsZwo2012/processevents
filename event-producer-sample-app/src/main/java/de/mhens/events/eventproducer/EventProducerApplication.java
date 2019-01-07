@@ -3,9 +3,7 @@ package de.mhens.events.eventproducer;
 import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 
-@EnableCircuitBreaker
 @EnableProcessApplication
 @SpringBootApplication
 public class EventProducerApplication {

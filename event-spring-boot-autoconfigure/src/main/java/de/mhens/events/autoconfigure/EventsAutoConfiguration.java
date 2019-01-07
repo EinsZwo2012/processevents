@@ -2,6 +2,7 @@ package de.mhens.events.autoconfigure;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +20,7 @@ import de.mhens.events.integration.transformers.HistoricTaskInstanceEventTransfo
 @Configuration
 @EnableConfigurationProperties(EventProperties.class)
 @EnableBinding(value = {ProcessEngineEventsChannel.class})
+@EnableCircuitBreaker
 public class EventsAutoConfiguration {
 
 	@Bean
