@@ -75,7 +75,7 @@
 		</dependency>
 		<dependency>
     		<groupId>de.mhens.events</groupId>
-    		<artifactId>event-spring-boot-starter</artifactId>
+    		<artifactId>event-producer-spring-boot-starter</artifactId>
             <version>${project.version}</version>
 		</dependency>
 	</dependencies>

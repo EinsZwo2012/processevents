@@ -15,9 +15,9 @@
 
     <modules>
         <module>event-model</module>
-        <module>event-library</module>
-        <module>event-spring-boot-autoconfigure</module>
-        <module>event-spring-boot-starter</module>
+        <module>event-producer-library</module>
+        <module>event-producer-spring-boot-autoconfigure</module>
+        <module>event-producer-spring-boot-starter</module>
         <module>event-producer-sample-app</module>
     </modules>
 	

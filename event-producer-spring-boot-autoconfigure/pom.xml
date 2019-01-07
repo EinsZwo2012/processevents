@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>event-spring-boot-autoconfigure</artifactId>
+	<artifactId>event-producer-spring-boot-autoconfigure</artifactId>
 	<packaging>jar</packaging>
 
-	<name>event-model</name>
+	<name>event-producer-spring-boot-autoconfigure</name>
 
     <parent>
         <artifactId>event-producer-plugin</artifactId>
@@ -46,7 +46,7 @@
 		
 	    <dependency>
             <groupId>de.mhens.events</groupId>
-            <artifactId>event-library</artifactId>
+            <artifactId>event-producer-library</artifactId>
             <version>${project.version}</version>
         </dependency>
 
