@@ -1,29 +1,29 @@
 package de.mhens.events.eventconsumer.elastic;
 
-import org.elasticsearch.client.Client;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.elasticsearch.client.TransportClientFactoryBean;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.client.RestClientFactoryBean;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 @EnableElasticsearchRepositories(basePackages = "de.mhens.events.eventconsumer")
 @Configuration
 public class ElasticSearchIntegrationConfiguration {
-	
-	@Bean
-    public TransportClientFactoryBean factory() {
-		TransportClientFactoryBean factory = new TransportClientFactoryBean();
-        return factory;
-    }
- 
+	 
     @Bean
-    public Client transportClient() throws Exception {
+    public RestHighLevelClient client() throws Exception {
         return factory().getObject();
     }
 	
 	@Bean
-	public ElasticsearchTemplate elasticsearchTemplate() throws Exception {
-		return new ElasticsearchTemplate(transportClient());
+	public ElasticsearchRestTemplate elasticsearchTemplate() throws Exception {
+		return new ElasticsearchRestTemplate(client());
+	}
+	
+	@Bean
+	public RestClientFactoryBean factory() {
+		RestClientFactoryBean factory = new RestClientFactoryBean();
+		return factory;
 	}
 }

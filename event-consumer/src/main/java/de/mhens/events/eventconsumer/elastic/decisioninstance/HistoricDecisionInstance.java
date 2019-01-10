@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Document(indexName = "camunda", type = "historic-decision")
+@Document(indexName = "camunda-historic-decision-instance")
 public class HistoricDecisionInstance {
  
     @Id

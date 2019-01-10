@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Document(indexName = "camunda", type = "historic-task")
+@Document(indexName = "camunda-historic-task-instance")
 public class HistoricTaskInstance {
  
     @Id

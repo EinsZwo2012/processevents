@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Document(indexName = "camunda", type = "historic-process-instance")
+@Document(indexName = "camunda-historic-process-instance")
 public class HistoricProcessInstance {
  
     @Id
